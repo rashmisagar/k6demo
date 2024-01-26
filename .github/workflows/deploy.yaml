@@ -1,0 +1,39 @@
+name: K6 Performance Test and Deployment
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  performance-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '14'
+
+      - name: Install k6
+        run: npm install -g k6
+
+      - name: Run k6 Performance Test
+        run: |
+          k6 run -o github first-script.js
+
+  deploy-results:
+    runs-on: ubuntu-latest
+
+    needs: performance-test
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Deploy k6 Results
+        run: |
+          echo "First results"
