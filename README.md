@@ -1,4 +1,4 @@
-# Performance Testing with k6 and GitHub Actions
+# Performance - Load Testing with k6 and GitHub Actions
 
 This repository demonstrates how to perform performance testing using k6 and automate the testing process using GitHub Actions.
 
